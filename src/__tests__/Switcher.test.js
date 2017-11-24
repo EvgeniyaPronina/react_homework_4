@@ -1,6 +1,6 @@
 import React from 'react';
 import Switcher from '../Switcher';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 
 describe('Компонент Switcher', () => {
   const A = () => <div />;
@@ -31,7 +31,7 @@ describe('Компонент Switcher', () => {
   });
 
   it('Рендерит второго ребенка если state.selectedChild == 1', () => {
-    wrapper.setState({selectedChild: 1});
+    wrapper.setState({ selectedChild: 1 });
     wrapper.update();
 
     expect(wrapper.find(BComponent)).toHaveLength(1);
@@ -93,13 +93,13 @@ describe('Компонент Switcher', () => {
   describe('Методы класса', () => {
     describe('handleChangeChild', () => {
       it(`При вызове c событием от .component-list__name с аттрибутом data-id="1" устанавливает значение state.selectedChild = 1`, () => {
-        wrapper.setState({selectedChild: 0});
+        wrapper.setState({ selectedChild: 0 });
         wrapper.update();
         wrapper
           .find('.component-list__name')
           .at(1)
           .simulate('click', {
-            target: {getAttribute: jest.fn().mockImplementation(() => '1')}
+            target: { getAttribute: jest.fn().mockImplementation(() => '1') }
           });
         wrapper.update();
         expect(wrapper.state().selectedChild).toEqual(1);

@@ -1,6 +1,6 @@
 import React from 'react';
 import CardNumberInput from '../CardNumberInput';
-import {mount} from 'enzyme';
+import { mount } from 'enzyme';
 
 describe('Компонент CardNumberInput', () => {
   describe('Методы класса', () => {
@@ -56,7 +56,7 @@ describe('Компонент CardNumberInput', () => {
       });
 
       it(`При получении новых props '12345' меняет state компоненты state.number на '1234 5'`, () => {
-        wrapper.setProps({cardNumber: '12345'});
+        wrapper.setProps({ cardNumber: '12345' });
         expect(wrapper.state().number).toEqual('1234 5');
       });
     });
@@ -76,7 +76,9 @@ describe('Компонент CardNumberInput', () => {
       });
 
       it(`При вводе в input '1234 5' вызывается метод props.onChange с нормализированным значением '12345'`, () => {
-        wrapper.find('input').simulate('change', {target: {value: '1234 5'}});
+        wrapper
+          .find('input')
+          .simulate('change', { target: { value: '1234 5' } });
         expect(onChangeMock).toBeCalled();
         expect(onChangeMock).toBeCalledWith('12345');
       });

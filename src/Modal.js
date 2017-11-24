@@ -1,8 +1,10 @@
-import {Component} from 'react';
+import { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 class Modal extends Component {
   render() {
-    return null;
+    const { children, domNode } = this.props;
+    return ReactDOM.createPortal(children, domNode);
   }
 }
 
