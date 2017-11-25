@@ -6,7 +6,6 @@ class CardNumberHolder extends Component {
 
   handleChange = number => {
     this.setState({ cardNumber: number });
-    console.log(number);
   };
 
   render() {

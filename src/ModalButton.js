@@ -2,28 +2,28 @@ import React, { Component } from 'react';
 import Modal from './Modal';
 
 class ModalButton extends Component {
-  state = { modalOpened: false };
+  state = { isModalShow: false };
 
-  // showModal = (e) => {
-  //     console.log(e.target.tagName)
-  //     this.setState({modalOpened: true})
-  // }
+  showModal = () => {
+    this.setState({ isModalShow: true });
+  };
 
-  handleClick = e => {
-    const { modalOpened } = this.state;
-    this.setState({ modalOpened: !modalOpened });
+  hideModal = () => {
+    this.setState({ isModalShow: false });
   };
 
   render() {
-    const { modalOpened } = this.state;
+    const { isModalShow } = this.state;
 
     return (
-      <div className="ModalContainer" onClick={this.handleClick}>
-        <button className="ModalButton">Show modal</button>
-        {modalOpened ? (
+      <div className="ModalContainer">
+        <button className="ModalButton" onClick={this.showModal}>
+          Show modal
+        </button>
+        {isModalShow ? (
           <Modal domNode={document.querySelector('#modal')}>
             <h2>Modal window</h2>
-            <button>Close</button>
+            <button onClick={this.hideModal}>Close</button>
           </Modal>
         ) : null}
       </div>

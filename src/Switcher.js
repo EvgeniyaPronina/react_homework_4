@@ -5,15 +5,15 @@ import './Switcher.css';
 // а так же работать с child.type.name и child.type.displayName
 
 class Switcher extends Component {
-  state = { selected: 'CardNumberHolder' };
+  state = { selectedChild: 0 };
 
-  hendleChildClick = e => {
-    let childName = e.target.getAttribute('data-name');
-    this.setState({ selected: childName });
+  handleChangeChild = e => {
+    let childId = +e.target.getAttribute('data-id');
+    this.setState({ selectedChild: childId });
   };
 
   render() {
-    const { selected } = this.state;
+    const { selectedChild } = this.state;
     const { children } = this.props;
 
     return (
@@ -23,11 +23,14 @@ class Switcher extends Component {
             {children.map((child, i) => {
               return (
                 <li
+                  className="component-list__name"
                   key={child.type.name}
-                  onClick={this.hendleChildClick}
-                  data-name={child.type.name}
+                  onClick={this.handleChangeChild}
+                  data-id={+i}
                 >
-                  {child.type.name}
+                  {child.type.displayName
+                    ? child.type.displayName
+                    : child.type.name}
                 </li>
               );
             })}
@@ -36,7 +39,7 @@ class Switcher extends Component {
         <hr />
         <div className="children-cont">
           {children.map((child, i) => {
-            return child.type.name === selected ? child : null;
+            return i === selectedChild ? child : null;
           })}
         </div>
       </div>
@@ -45,13 +48,3 @@ class Switcher extends Component {
 }
 
 export default Switcher;
-
-{
-  /*{React.Children.map(Children,*/
-}
-{
-  /*child => child.type.name === selected ? child : null*/
-}
-{
-  /*)}*/
-}
